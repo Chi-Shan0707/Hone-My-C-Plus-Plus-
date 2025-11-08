@@ -1,8 +1,6 @@
 #include<iostream>
 int main()
 {
-    int d;
-    std::cin>>d;
-    std::cout<<d;
+    std::cout<<"hello world"<<std::endl;
     return 0;
 }

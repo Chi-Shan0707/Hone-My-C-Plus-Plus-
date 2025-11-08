@@ -1,4 +1,38 @@
 {
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "GDB Launch (externalConsole)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": true,
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "preLaunchTask": "cppbuild: C/C++: g++.exe 生成活动文件"
+    },
+    {
+      "name": "GDB Launch (integratedTerminal)",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${fileDirname}/${fileBasenameNoExtension}",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "console": "integratedTerminal",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "preLaunchTask": "cppbuild: C/C++: g++.exe 生成活动文件"
+    }
+  ]
+}
+{
     "configurations": [
         {
             "name": "C/C++: gcc.exe 构建和调试活动文件",
