@@ -59,6 +59,14 @@ void reference()
     */
     // int &r=5;错误
     SetValue() = 10;
+    /*
+    解释 SetValue 在你代码里的用法（简短）
+
+函数签名 int &SetValue() 表示：函数返回一个 int 的左值引用（reference）。
+函数体 return n; 返回全局变量 n 的引用。因此 SetValue() 表达式的类型是 int&，是一个可被赋值的左值。
+所以 SetValue() = 10; 等价于 n = 10; —— 把右侧值赋给 n。这也是你在程序中看到的行为（输出 10）。
+    
+    */
     std::cout << n << std::endl;
     // 输出 10
     int m = 7;
@@ -114,7 +122,7 @@ void pointer()
     这连着的这些东东都是这个对象的
     */
     /*
-    指针初始化和赋值运算是有约束条件的，只能使用一下四种植
+    指针初始化和赋值运算是有约束条件的，只能使用以下四种值
     地址初值不能是变量，即便是变量，即便是值=0的整型变量，也不能是整形数据
     int *p_error;
     int P=3;
@@ -141,11 +149,40 @@ void pointer()
 void const_pointer()
 {    
     std::cout << "Here is const_pointer;" << std::endl;
-    const int a = 10;  // const第一种用法：定义常量  
+    const int A = 10;  // const第一种用法：定义常量  
     int v;
-    std::cout << a << std::endl;
-    const int *b;
+    std::cout << A<< std::endl;
     
-    b = &a;
-    std::cout << *b << std::endl;
+
+
+    /*
+定义常量
+
+
+*/
+//定义常量指针：不可以通过常量指针去修改器指向的内容
+
+    int a = 10;
+    int b=9;
+    const int *p = &a; //定义常量指针
+    // *p = 20;          //错误，不能通过常量指针去修改器指向的内容
+    a = 20;            //可以通过变量名去修改变量的值
+    std::cout << "*p=" << *p << std::endl;
+/*
+根据哲学，我们既然使用了常量指针，就说明我们希望是直接修改变量本身，不能通过修改常量指针去动这个变量
+所以我们不能把常量指针赋值给另一个非常量指针，不然你说那个非常量指针能不能被修改呢。
+但反过来可以，我可以让一个非常量指针赋值给一个常量指针
+*/
+    int* q=&b;
+    int *Q;
+    //硬要搞事情可以吗，当然可以
+    p=q;
+    Q=(int *)p; //强制类型转换
+   
+}
+
+void GoodCall(const char *ptr)
+{
+    printf("%s",ptr);
+    //这样子可以防止“不小心”通过参数指针改变原变量的情况
 }
