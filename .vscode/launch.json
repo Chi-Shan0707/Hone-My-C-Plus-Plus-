@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/Chi's Heap",
-      "program": "/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/Chi's Heap/build/Debug/outDebug",
+      "cwd": "/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/Chi's CS106L",
+      "program": "/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/Chi's CS106L/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

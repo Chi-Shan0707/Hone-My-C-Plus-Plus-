@@ -1,4 +1,50 @@
 /*
+ * Red-Black Tree Workflow (Based on "Introduction to Algorithms")
+ * 红黑树工作流程（基于《算法导论》）
+ *
+ * 1. Properties (红黑树性质):
+ *    a. Every node is either red or black. (每个节点是红色或黑色)
+ *    b. The root is black. (根节点是黑色)
+ *    c. Every leaf (NIL) is black. (每个叶子节点 NIL 都是黑色)
+ *    d. If a node is red, then both its children are black. (如果一个节点是红色，则它的两个子节点都是黑色 - 即不能有两个连续的红色节点)
+ *    e. For each node, all simple paths from the node to descendant leaves contain the same number of black nodes. (从任意节点到其后代叶子节点的所有简单路径包含相同数量的黑色节点 - 黑高相同)
+ *
+ * 2. Insertion Workflow (插入流程):
+ *    a. Standard BST Insertion: Insert the new node `z` like in a standard Binary Search Tree and color it RED.
+ *       (标准 BST 插入：像普通二叉搜索树一样插入新节点 `z`，并将其染成红色。)
+ *    b. Fixup (调整): Since inserting a red node might violate properties (specifically property d, double red), we fix it.
+ *       (调整：因为插入红色节点可能违反性质（特别是性质 d，双红），我们需要进行调整。)
+ *       - Case 1: `z`'s uncle `y` is RED. (情况 1：`z` 的叔叔节点 `y` 是红色)
+ *         -> Recolor parent and uncle to BLACK, grandpa to RED. Move `z` up to grandpa.
+ *         (-> 将父节点和叔叔节点染黑，祖父节点染红。将 `z` 上移至祖父节点。)
+ *       - Case 2: `z`'s uncle `y` is BLACK and `z` is a right child (triangle shape). (情况 2：`z` 的叔叔节点 `y` 是黑色，且 `z` 是右孩子 - 三角形)
+ *         -> Left rotate parent to transform into Case 3.
+ *         (-> 对父节点进行左旋，转化为情况 3。)
+ *       - Case 3: `z`'s uncle `y` is BLACK and `z` is a left child (line shape). (情况 3：`z` 的叔叔节点 `y` 是黑色，且 `z` 是左孩子 - 直线形)
+ *         -> Right rotate grandpa and recolor parent BLACK, grandpa RED.
+ *         (-> 对祖父节点进行右旋，并将父节点染黑，祖父节点染红。)
+ *
+ * 3. Deletion Workflow (删除流程):
+ *    a. Standard BST Deletion: Remove node `z` (or its successor `y`). Let `x` be the child that replaces the removed node.
+ *       (标准 BST 删除：删除节点 `z`（或其后继 `y`）。设 `x` 为替代被删除节点位置的孩子节点。)
+ *    b. If the removed node's original color was BLACK, properties might be violated (black height reduced). We fix `x`.
+ *       (如果被删除节点的原始颜色是黑色，性质可能被违反（黑高降低）。我们需要调整 `x`。)
+ *    c. Fixup (调整): `x` is considered to have an "extra black" unit.
+ *       (调整：`x` 被认为带有一个“额外的黑色”单位。)
+ *       - Case 1: `x`'s sibling `w` is RED. (情况 1：`x` 的兄弟节点 `w` 是红色)
+ *         -> Recolor `w` BLACK, parent RED, rotate parent. New sibling will be BLACK.
+ *         (-> 将 `w` 染黑，父节点染红，旋转父节点。新的兄弟节点将变为黑色。)
+ *       - Case 2: `x`'s sibling `w` is BLACK, and both of `w`'s children are BLACK. (情况 2：`x` 的兄弟节点 `w` 是黑色，且 `w` 的两个孩子都是黑色)
+ *         -> Remove one black from `x` and `w`, add one black to parent (recolor `w` RED, move `x` up to parent).
+ *         (-> 从 `x` 和 `w` 各去掉一个黑色，给父节点增加一个黑色（将 `w` 染红，`x` 上移至父节点）。)
+ *       - Case 3: `x`'s sibling `w` is BLACK, `w`'s left child is RED, right child is BLACK. (情况 3：`x` 的兄弟节点 `w` 是黑色，`w` 的左孩子是红色，右孩子是黑色)
+ *         -> Recolor `w`'s left child BLACK, `w` RED, right rotate `w`. Transform to Case 4.
+ *         (-> 将 `w` 的左孩子染黑，`w` 染红，右旋 `w`。转化为情况 4。)
+ *       - Case 4: `x`'s sibling `w` is BLACK, and `w`'s right child is RED. (情况 4：`x` 的兄弟节点 `w` 是黑色，且 `w` 的右孩子是红色)
+ *         -> Recolor `w` to parent's color, parent to BLACK, `w`'s right child to BLACK, left rotate parent. Done.
+ *         (-> 将 `w` 染成父节点的颜色，父节点染黑，`w` 的右孩子染黑，左旋父节点。完成。)
+ */
+/*
 1. 每个节点红色或黑色
 2. 根节点为黑色
 3. 叶子节点为nihil，且为黑色
