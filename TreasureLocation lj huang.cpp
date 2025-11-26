@@ -18,6 +18,7 @@ int main()
     for(int i=0;i<N;i++)
         fin>>data[i][0]>>data[i][1]>>data[i][2];
     fin.ignore();  //修正：忽略之前读取残留的换行符
+    fin.ignore(); 
     vector<string> content;  //后N行?
     string line;
     int lines=0; //用于计数 统计读了多少行
@@ -40,7 +41,8 @@ int main()
         content.push_back(line);
         ++lines;
     }
-
+    cout<<content[0]<<endl<<content[1]<<endl;
+    cout<<"****"<<endl;
     //提取宝藏
     vector<string> treasure(N);
     for(int i=0;i<N;i++)
@@ -49,7 +51,7 @@ int main()
         int array=data[i][1]-1;
         int len=data[i][2];
         string result="";//好的初始化
-        
+        cout<<endl<<content[row-N-1]<<endl;
 /*
  *******************************************************
  *  NOTE: 行编号说明 (仔细想想每个变量的含义)
@@ -79,7 +81,7 @@ int main()
             
             if(rowRange)
             {
-                bool charRange=index>=0&&index<content[row-N-1].size();
+                bool charRange=index>=0&&index<content[row-N-2].size();
 
                 if(i==N-1)
                 {
@@ -91,7 +93,7 @@ int main()
                          */
                 }
                 
-                if(charRange&&content[row-N-1][index]!='\r')result+=content[row-N-1][index];
+                if(charRange&&content[row-N-2][index]!='\r')result+=content[row-N-2][index];
             //Here was a bug: content[row-N-2][index] should be content[row-N-1][index]
                 else result+="*";
                 
