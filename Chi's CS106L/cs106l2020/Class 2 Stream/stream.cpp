@@ -31,17 +31,28 @@ void basic_try()
     cout<<oss.str()<<endl;
     cout<<iss.str()<<endl;
 }
-int input_integer(const string&str)
+int stringToInteger(const string&str)
 {
     istringstream iss(str);//初始化于缓冲区
     int res;
     iss>>res;
     return res;
 }
+void stringToIntegerTest() {
+    while (true) {
+        cout << "Type in an integer: ";
+        string s;
+        if (!getline(cin, s)) throw std::domain_error("getline failed");
+        cout << "You typed in: " << s << "\n";
+        int result = stringToInteger(s);
+        cout << "As an integer, this is: " << result << "\n";
+        cout << "Half of that is: " << result/2 << "\n";
+    }
+
+}
 int main()
 {
     string number;
-    std::cin>>number;
-    cout<<input_integer(number)<<endl;
+    stringToIntegerTest();
     return 0;
 }
