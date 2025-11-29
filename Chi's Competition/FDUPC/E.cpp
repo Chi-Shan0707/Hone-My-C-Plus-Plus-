@@ -59,7 +59,10 @@ void update(int x,int y)
             if(mp[nx][ny]=='#')continue;
             if(vst[nx][ny])continue;
             vst[nx][ny]=true;
-            f[nx][ny]=min(f[nx][ny],get<2>(nxt));
+            if(f[nx][ny]==-1||f[nx][ny]>get<2>(nxt))
+            {
+                f[nx][ny]=get<2>(nxt);
+            }
             q.push(nxt);
         }
     }
@@ -72,7 +75,7 @@ int main()
         for(int j=1;j<=m;++j)
         {
             cin>>mp[i][j];
-            f[i][j]=1e5;
+            f[i][j]=-1;
         }
     }
     int Q;cin>>Q;
