@@ -84,3 +84,4 @@ yarn-error.log
 *.json
 *.in
 *.out
+*.o

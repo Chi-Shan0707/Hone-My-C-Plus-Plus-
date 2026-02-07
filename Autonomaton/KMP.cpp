@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include <string_view>
 #include<vector>
 using namespace std;
 [[nodiscard]] vector<size_t> compute_pi(string_view pattern) 
