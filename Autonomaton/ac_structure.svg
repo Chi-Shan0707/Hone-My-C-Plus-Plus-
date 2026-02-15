@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+  <defs>
+    <style>
+      text { font-family: monospace; font-size: 14px; }
+      .circle { fill: #f0f8ff; stroke: #4682b4; stroke-width: 2; r: 20; }
+      .circle-red { fill: #ffe4e1; stroke: #cd5c5c; stroke-width: 2; r: 20; }
+      .line { stroke: #000; stroke-width: 2; }
+      .fail { stroke: #cd5c5c; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowFail); }
+      .arrow { marker-end: url(#arrowNormal); }
+    </style>
+    <marker id="arrowNormal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000" />
+    </marker>
+    <marker id="arrowFail" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#cd5c5c" />
+    </marker>
+  </defs>
+
+  <g transform="translate(50, 40)">
+    <!-- Root -->
+    <circle cx="200" cy="50" class="circle" />
+    <text x="200" y="55" text-anchor="middle">root</text>
+
+    <!-- Level 1: s, h -->
+    <line x1="200" y1="50" x2="100" y2="150" class="line arrow" />
+    <circle cx="100" cy="150" class="circle" />
+    <text x="100" y="155" text-anchor="middle">s</text>
+
+    <line x1="200" y1="50" x2="300" y2="150" class="line arrow" />
+    <circle cx="300" cy="150" class="circle" />
+    <text x="300" y="155" text-anchor="middle">h</text>
+
+    <!-- Level 2: sh, he -->
+    <line x1="100" y1="150" x2="100" y2="250" class="line arrow" />
+    <circle cx="100" cy="250" class="circle" />
+    <text x="100" y="255" text-anchor="middle">h</text>
+
+    <line x1="300" y1="150" x2="300" y2="250" class="line arrow" />
+    <circle cx="300" cy="250" class="circle" />
+    <text x="300" y="255" text-anchor="middle">e</text>
+    <text x="330" y="255" fill="red" font-size="10">Match "he"</text>
+
+    <!-- Level 3: she, her -->
+    <line x1="100" y1="250" x2="100" y2="350" class="line arrow" />
+    <circle cx="100" cy="350" class="circle-red" />
+    <text x="100" y="355" text-anchor="middle">e</text>
+    <text x="130" y="355" fill="red" font-size="10">Match "she"</text>
+
+    <line x1="300" y1="250" x2="300" y2="350" class="line arrow" />
+    <circle cx="300" cy="350" class="circle-red" />
+    <text x="300" y="355" text-anchor="middle">r</text>
+    <text x="330" y="355" fill="red" font-size="10">Match "her"</text>
+
+    <!-- Fail Pointers -->
+    <!-- 's' fail-> root -->
+    <path d="M 80 150 Q 50 100 180 50" class="fail" fill="none" />
+    <text x="60" y="120" fill="#cd5c5c" font-size="10">Fail->Root</text>
+
+    <!-- 'h' (in she) fail-> 'h' (root child) -->
+    <path d="M 120 250 Q 200 200 280 150" class="fail" fill="none" />
+    <text x="200" y="220" fill="#cd5c5c" font-size="10">Fail->h</text>
+    
+    <!-- 'e' (in she) fail-> 'e' (in he) -->
+    <path d="M 120 350 Q 200 300 280 250" class="fail" fill="none" />
+    <text x="200" y="320" fill="#cd5c5c" font-size="10">Fail->he</text>
+
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(520, 50)">
+    <text x="0" y="20" font-weight="bold">Patterns: "she", "he", "her"</text>
+    <text x="0" y="50">Solid Line: Trie Edge (Success)</text>
+    <text x="0" y="70" fill="#cd5c5c">Dashed Line: Fail Pointer (Recovery)</text>
+    <text x="0" y="100" font-size="12" width="200">
+      <tspan x="0" dy="0">When matching "she",</tspan>
+      <tspan x="0" dy="15">if next char is NOT matched,</tspan>
+      <tspan x="0" dy="15">we follow the red Fail link.</tspan>
+      <tspan x="0" dy="15">"she" ends with "he", so</tspan>
+      <tspan x="0" dy="15">we jump to the node for "he".</tspan>
+    </text>
+  </g>
+</svg>
