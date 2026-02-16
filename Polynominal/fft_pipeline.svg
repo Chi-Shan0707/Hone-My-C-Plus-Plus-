@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="520" viewBox="0 0 1180 520">
+  <defs>
+    <style>
+      text { font-family: "Inter", "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .title { font-size: 25px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .panel { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.2; rx: 12; }
+      .boxA { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.2; rx: 12; }
+      .boxB { fill: #ecfdf5; stroke: #16a34a; stroke-width: 2.2; rx: 12; }
+      .boxC { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.2; rx: 12; }
+      .small { font-size: 12px; fill: #4b5563; }
+      .head { font-size: 16px; font-weight: 700; }
+      .math { font-size: 13px; fill: #374151; }
+      .arrowBlue { stroke: #2563eb; stroke-width: 2.6; fill: none; marker-end: url(#arrBlue); }
+      .arrowGreen { stroke: #16a34a; stroke-width: 2.6; fill: none; marker-end: url(#arrGreen); }
+      .arrowOrange { stroke: #ea580c; stroke-width: 2.6; fill: none; marker-end: url(#arrOrange); }
+    </style>
+    <marker id="arrBlue" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#2563eb"/>
+    </marker>
+    <marker id="arrGreen" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#16a34a"/>
+    </marker>
+    <marker id="arrOrange" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#ea580c"/>
+    </marker>
+  </defs>
+
+  <text x="36" y="44" class="title">FFT Multiplication Pipeline</text>
+  <text x="36" y="70" class="subtitle">Coefficient domain -> Value domain -> Pointwise multiply -> Inverse FFT -> Carry normalize</text>
+
+  <rect x="24" y="96" width="1132" height="388" class="panel"/>
+
+  <rect x="58" y="146" width="250" height="140" class="boxA"/>
+  <text x="78" y="176" class="head">Step 1: Input Coefficients</text>
+  <text x="78" y="202" class="small">A = [a0,a1,...], B = [b0,b1,...]</text>
+  <text x="78" y="226" class="small">choose N >= n+m-1 and N = 2^k</text>
+  <text x="78" y="250" class="small">zero-pad to length N</text>
+
+  <rect x="350" y="146" width="250" height="140" class="boxA"/>
+  <text x="370" y="176" class="head">Step 2: FFT</text>
+  <text x="370" y="202" class="small">FA = FFT(A), FB = FFT(B)</text>
+  <text x="370" y="226" class="small">radix-2 butterflies</text>
+  <text x="370" y="250" class="small">O(N log N)</text>
+
+  <rect x="642" y="146" width="250" height="140" class="boxB"/>
+  <text x="662" y="176" class="head">Step 3: Pointwise Product</text>
+  <text x="662" y="202" class="small">FC[k] = FA[k] * FB[k]</text>
+  <text x="662" y="226" class="small">for k = 0..N-1</text>
+  <text x="662" y="250" class="small">O(N)</text>
+
+  <rect x="934" y="146" width="190" height="140" class="boxC"/>
+  <text x="952" y="176" class="head">Step 4: IFFT</text>
+  <text x="952" y="202" class="small">C = IFFT(FC)</text>
+  <text x="952" y="226" class="small">round real part</text>
+  <text x="952" y="250" class="small">carry normalize</text>
+
+  <path d="M 308 216 L 340 216" class="arrowBlue"/>
+  <path d="M 600 216 L 632 216" class="arrowGreen"/>
+  <path d="M 892 216 L 924 216" class="arrowOrange"/>
+
+  <line x1="58" y1="322" x2="1124" y2="322" stroke="#d1d5db"/>
+
+  <text x="70" y="352" class="math">DFT: Â(k) = Σ a(j) · ω_N^(jk), where ω_N = exp(2πi/N)</text>
+  <text x="70" y="378" class="math">IFFT: a(j) = (1/N) Σ Â(k) · ω_N^(-jk)</text>
+  <text x="70" y="404" class="math">Recurrence: T(N)=2T(N/2)+O(N) => O(N log N)</text>
+  <text x="70" y="430" class="small">For huge constraints, NTT avoids floating-point precision issues.</text>
+</svg>

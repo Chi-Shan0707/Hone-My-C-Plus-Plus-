@@ -1,82 +1,102 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520" viewBox="0 0 1100 520">
   <defs>
     <style>
-      text { font-family: monospace; font-size: 14px; }
-      .circle { fill: #f0f8ff; stroke: #4682b4; stroke-width: 2; r: 20; }
-      .circle-red { fill: #ffe4e1; stroke: #cd5c5c; stroke-width: 2; r: 20; }
-      .line { stroke: #000; stroke-width: 2; }
-      .fail { stroke: #cd5c5c; stroke-width: 2; stroke-dasharray: 5,5; marker-end: url(#arrowFail); }
-      .arrow { marker-end: url(#arrowNormal); }
+      text { font-family: "Inter", "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .title { font-size: 24px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .node { fill: #eef6ff; stroke: #2563eb; stroke-width: 2.2; }
+      .accept { fill: #ecfdf5; stroke: #16a34a; stroke-width: 2.4; }
+      .nodeText { font-size: 13px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+      .edge { stroke: #374151; stroke-width: 2.2; marker-end: url(#arrowDark); }
+      .fail { stroke: #dc2626; stroke-width: 2.2; stroke-dasharray: 7 6; marker-end: url(#arrowFail); fill: none; }
+      .label { font-size: 12px; fill: #374151; }
+      .match { font-size: 11px; fill: #16a34a; font-weight: 600; }
+      .panel { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.2; rx: 12; }
+      .small { font-size: 12px; fill: #4b5563; }
     </style>
-    <marker id="arrowNormal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#000" />
+    <marker id="arrowDark" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#374151"/>
     </marker>
-    <marker id="arrowFail" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#cd5c5c" />
+    <marker id="arrowFail" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#dc2626"/>
     </marker>
   </defs>
 
-  <g transform="translate(50, 40)">
-    <!-- Root -->
-    <circle cx="200" cy="50" class="circle" />
-    <text x="200" y="55" text-anchor="middle">root</text>
+  <text x="40" y="46" class="title">AC Automaton: Trie + Fail Links + Output Merge</text>
+  <text x="40" y="72" class="subtitle">Patterns = {"she", "he", "her"} | Solid: trie transitions | Dashed: fail transitions</text>
 
-    <!-- Level 1: s, h -->
-    <line x1="200" y1="50" x2="100" y2="150" class="line arrow" />
-    <circle cx="100" cy="150" class="circle" />
-    <text x="100" y="155" text-anchor="middle">s</text>
+  <!-- Trie area -->
+  <rect x="30" y="95" width="700" height="380" class="panel"/>
 
-    <line x1="200" y1="50" x2="300" y2="150" class="line arrow" />
-    <circle cx="300" cy="150" class="circle" />
-    <text x="300" y="155" text-anchor="middle">h</text>
+  <!-- Nodes -->
+  <circle cx="180" cy="150" r="24" class="node"/>
+  <text x="180" y="150" class="nodeText">root</text>
 
-    <!-- Level 2: sh, he -->
-    <line x1="100" y1="150" x2="100" y2="250" class="line arrow" />
-    <circle cx="100" cy="250" class="circle" />
-    <text x="100" y="255" text-anchor="middle">h</text>
+  <circle cx="95" cy="245" r="24" class="node"/>
+  <text x="95" y="245" class="nodeText">s</text>
 
-    <line x1="300" y1="150" x2="300" y2="250" class="line arrow" />
-    <circle cx="300" cy="250" class="circle" />
-    <text x="300" y="255" text-anchor="middle">e</text>
-    <text x="330" y="255" fill="red" font-size="10">Match "he"</text>
+  <circle cx="265" cy="245" r="24" class="node"/>
+  <text x="265" y="245" class="nodeText">h</text>
 
-    <!-- Level 3: she, her -->
-    <line x1="100" y1="250" x2="100" y2="350" class="line arrow" />
-    <circle cx="100" cy="350" class="circle-red" />
-    <text x="100" y="355" text-anchor="middle">e</text>
-    <text x="130" y="355" fill="red" font-size="10">Match "she"</text>
+  <circle cx="95" cy="338" r="24" class="node"/>
+  <text x="95" y="338" class="nodeText">sh</text>
 
-    <line x1="300" y1="250" x2="300" y2="350" class="line arrow" />
-    <circle cx="300" cy="350" class="circle-red" />
-    <text x="300" y="355" text-anchor="middle">r</text>
-    <text x="330" y="355" fill="red" font-size="10">Match "her"</text>
+  <circle cx="265" cy="338" r="24" class="accept"/>
+  <text x="265" y="338" class="nodeText">he</text>
 
-    <!-- Fail Pointers -->
-    <!-- 's' fail-> root -->
-    <path d="M 80 150 Q 50 100 180 50" class="fail" fill="none" />
-    <text x="60" y="120" fill="#cd5c5c" font-size="10">Fail->Root</text>
+  <circle cx="95" cy="425" r="24" class="accept"/>
+  <text x="95" y="425" class="nodeText">she</text>
 
-    <!-- 'h' (in she) fail-> 'h' (root child) -->
-    <path d="M 120 250 Q 200 200 280 150" class="fail" fill="none" />
-    <text x="200" y="220" fill="#cd5c5c" font-size="10">Fail->h</text>
-    
-    <!-- 'e' (in she) fail-> 'e' (in he) -->
-    <path d="M 120 350 Q 200 300 280 250" class="fail" fill="none" />
-    <text x="200" y="320" fill="#cd5c5c" font-size="10">Fail->he</text>
+  <circle cx="265" cy="425" r="24" class="accept"/>
+  <text x="265" y="425" class="nodeText">her</text>
 
-  </g>
+  <!-- Trie edges -->
+  <line x1="165" y1="168" x2="110" y2="227" class="edge"/>
+  <text x="130" y="186" class="label">s</text>
 
-  <!-- Legend -->
-  <g transform="translate(520, 50)">
-    <text x="0" y="20" font-weight="bold">Patterns: "she", "he", "her"</text>
-    <text x="0" y="50">Solid Line: Trie Edge (Success)</text>
-    <text x="0" y="70" fill="#cd5c5c">Dashed Line: Fail Pointer (Recovery)</text>
-    <text x="0" y="100" font-size="12" width="200">
-      <tspan x="0" dy="0">When matching "she",</tspan>
-      <tspan x="0" dy="15">if next char is NOT matched,</tspan>
-      <tspan x="0" dy="15">we follow the red Fail link.</tspan>
-      <tspan x="0" dy="15">"she" ends with "he", so</tspan>
-      <tspan x="0" dy="15">we jump to the node for "he".</tspan>
-    </text>
-  </g>
+  <line x1="195" y1="168" x2="250" y2="227" class="edge"/>
+  <text x="228" y="186" class="label">h</text>
+
+  <line x1="95" y1="269" x2="95" y2="314" class="edge"/>
+  <text x="106" y="295" class="label">h</text>
+
+  <line x1="265" y1="269" x2="265" y2="314" class="edge"/>
+  <text x="276" y="295" class="label">e</text>
+
+  <line x1="95" y1="362" x2="95" y2="401" class="edge"/>
+  <text x="106" y="384" class="label">e</text>
+
+  <line x1="265" y1="362" x2="265" y2="401" class="edge"/>
+  <text x="276" y="384" class="label">r</text>
+
+  <!-- Fail edges -->
+  <path d="M 78 245 Q 45 190 156 154" class="fail"/>
+  <text x="45" y="205" class="small">fail(s)=root</text>
+
+  <path d="M 118 338 Q 180 295 241 245" class="fail"/>
+  <text x="176" y="302" class="small">fail(sh)=h</text>
+
+  <path d="M 118 425 Q 184 382 241 338" class="fail"/>
+  <text x="178" y="388" class="small">fail(she)=he</text>
+
+  <!-- Match labels -->
+  <text x="300" y="338" class="match">match: "he"</text>
+  <text x="130" y="425" class="match">match: "she" (+suffix "he")</text>
+  <text x="300" y="425" class="match">match: "her"</text>
+
+  <!-- Right explanation panel -->
+  <rect x="760" y="95" width="310" height="380" class="panel"/>
+  <text x="782" y="130" font-size="17" font-weight="700">Query on text: "ushers"</text>
+  <text x="782" y="160" class="small">1) read 'u': stay at root</text>
+  <text x="782" y="184" class="small">2) read 's' -> state s</text>
+  <text x="782" y="208" class="small">3) read 'h' -> state sh</text>
+  <text x="782" y="232" class="small">4) read 'e' -> state she</text>
+  <text x="782" y="256" class="small">   report "she" and inherited "he"</text>
+  <text x="782" y="280" class="small">5) next char mismatch: follow fail</text>
+  <text x="782" y="304" class="small">6) continue in O(1) transition each step</text>
+
+  <line x1="780" y1="326" x2="1045" y2="326" stroke="#d1d5db"/>
+  <text x="782" y="350" class="small">Build: O(sum|Pi| + Σ·states)</text>
+  <text x="782" y="374" class="small">Query: O(|T| + #matches)</text>
+  <text x="782" y="398" class="small">(for fixed alphabet, near linear)</text>
 </svg>

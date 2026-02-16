@@ -1,91 +1,103 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560">
   <defs>
     <style>
-      text { font-family: monospace; font-size: 14px; text-anchor: middle;}
-      .node { stroke: #333; stroke-width: 2; r: 25; }
-      .node text { fill: #000; font-weight: bold; }
-      .edge { stroke: #555; stroke-width: 2; }
-      .label { fill: #555; font-size: 12px; }
-      .arrow { fill: none; stroke: #e74c3c; stroke-width: 3; marker-end: url(#arrowhead); }
+      text { font-family: "Inter", "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .title { font-size: 24px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .panel { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.2; rx: 12; }
+      .node { fill: #eff6ff; stroke: #2563eb; stroke-width: 2.2; }
+      .hot { fill: #fef3c7; stroke: #d97706; stroke-width: 2.2; }
+      .rb-red { fill: #fee2e2; stroke: #dc2626; stroke-width: 2.2; }
+      .rb-black { fill: #111827; stroke: #111827; stroke-width: 2.2; }
+      .nodeText { font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+      .nodeTextLight { font-size: 12px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; fill: #ffffff; }
+      .edge { stroke: #374151; stroke-width: 2.2; }
+      .arrow { stroke: #16a34a; stroke-width: 2.4; fill: none; marker-end: url(#arrowGreen); }
+      .small { font-size: 12px; fill: #4b5563; }
+      .case { font-size: 13px; font-weight: 700; }
     </style>
-    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c" />
+    <marker id="arrowGreen" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#16a34a"/>
     </marker>
   </defs>
 
-  <!-- Left Side: Unbalanced (Right-Right Case) -->
-  <g transform="translate(150, 50)">
-    <text x="100" y="-20" font-size="16" font-weight="bold">Unbalanced (Right Heavy)</text>
-    
-    <!-- Node A -->
-    <circle cx="100" cy="50" class="node" fill="#fff" />
-    <text x="100" y="55">A</text>
-    
-    <!-- Edge A->B -->
-    <line x1="100" y1="75" x2="160" y2="125" class="edge" />
-    
-    <!-- Node B -->
-    <circle cx="160" cy="150" class="node" fill="#fff" />
-    <text x="160" y="155">B</text>
+  <text x="30" y="42" class="title">Self-Balancing BST: Rotations for AVL and Red-Black Fix-up</text>
+  <text x="30" y="66" class="subtitle">Left: AVL RR case repaired by Left Rotation | Right: Red-Black insertion fix direction</text>
 
-    <!-- Edge B->C -->
-    <line x1="160" y1="175" x2="200" y2="225" class="edge" />
-    
-    <!-- Node C -->
-    <circle cx="200" cy="250" class="node" fill="#fff" />
-    <text x="200" y="255">C</text>
-    
-    <!-- Subtrees -->
-    <text x="60" y="100" class="label">T1</text>
-    <line x1="75" y1="75" x2="50" y2="120" class="edge" stroke-dasharray="4"/>
-    
-    <text x="120" y="200" class="label">T2</text>
-    <line x1="135" y1="175" x2="120" y2="220" class="edge" stroke-dasharray="4"/>
-    
-    <text x="240" y="300" class="label">T3</text>
-    <line x1="225" y1="275" x2="240" y2="320" class="edge" stroke-dasharray="4"/>
-  </g>
+  <!-- Left panel: AVL rotation -->
+  <rect x="24" y="94" width="560" height="438" class="panel"/>
+  <text x="46" y="126" class="case">AVL RR Imbalance -> Left Rotate(z)</text>
 
-  <!-- Arrow: Left Rotate -->
-  <g transform="translate(350, 150)">
-    <path d="M 20 20 Q 50 -10 80 20" class="arrow" />
-    <text x="50" y="50" fill="#e74c3c">Left Rotate (A)</text>
-  </g>
+  <!-- before -->
+  <text x="110" y="156" class="small">Before</text>
+  <circle cx="140" cy="200" r="24" class="hot"/>
+  <text x="140" y="200" class="nodeText">z</text>
+  <circle cx="220" cy="280" r="24" class="hot"/>
+  <text x="220" y="280" class="nodeText">y</text>
+  <circle cx="300" cy="360" r="24" class="node"/>
+  <text x="300" y="360" class="nodeText">x</text>
+  <line x1="156" y1="216" x2="204" y2="264" class="edge"/>
+  <line x1="236" y1="296" x2="284" y2="344" class="edge"/>
+  <text x="88" y="255" class="small">T1</text>
+  <text x="184" y="348" class="small">T2</text>
+  <text x="332" y="415" class="small">T3</text>
 
-  <!-- Right Side: Balanced -->
-  <g transform="translate(550, 50)">
-    <text x="100" y="-20" font-size="16" font-weight="bold">Balanced (New Root B)</text>
-    
-    <!-- Node B (Root) -->
-    <circle cx="100" cy="50" class="node" fill="#f0fff0" stroke="#2ecc71" /> 
-    <text x="100" y="55">B</text>
-    
-    <!-- Edge B->A -->
-    <line x1="100" y1="75" x2="40" y2="125" class="edge" />
-    
-    <!-- Node A -->
-    <circle cx="40" cy="150" class="node" fill="#fff" />
-    <text x="40" y="155">A</text>
+  <!-- arrow -->
+  <path d="M 338 260 Q 390 220 442 260" class="arrow"/>
+  <text x="390" y="214" class="small">rotate left at z</text>
 
-    <!-- Edge B->C -->
-    <line x1="100" y1="75" x2="160" y2="125" class="edge" />
-    
-    <!-- Node C -->
-    <circle cx="160" cy="150" class="node" fill="#fff" />
-    <text x="160" y="155">C</text>
+  <!-- after -->
+  <text x="468" y="156" class="small">After</text>
+  <circle cx="438" cy="200" r="24" class="node"/>
+  <text x="438" y="200" class="nodeText">y</text>
+  <circle cx="368" cy="280" r="24" class="node"/>
+  <text x="368" y="280" class="nodeText">z</text>
+  <circle cx="508" cy="280" r="24" class="node"/>
+  <text x="508" y="280" class="nodeText">x</text>
+  <line x1="422" y1="216" x2="384" y2="264" class="edge"/>
+  <line x1="454" y1="216" x2="492" y2="264" class="edge"/>
+  <text x="324" y="336" class="small">T1</text>
+  <text x="410" y="336" class="small">T2 (moved)</text>
+  <text x="542" y="336" class="small">T3</text>
 
-    <!-- Subtrees -->
-    <text x="10" y="200" class="label">T1</text>
-    <line x1="15" y1="175" x2="10" y2="220" class="edge" stroke-dasharray="4"/>
+  <text x="46" y="468" class="small">AVL insertion fixes first unbalanced ancestor (LL/LR/RL/RR), keeping bf in {-1,0,1}.</text>
 
-    <text x="70" y="200" class="label">T2</text>
-    <line x1="65" y1="175" x2="70" y2="220" class="edge" stroke-dasharray="4"/>
-    
-    <text x="190" y="200" class="label">T3</text>
-    <line x1="185" y1="175" x2="190" y2="220" class="edge" stroke-dasharray="4"/>
-  </g>
-  
-  <text x="400" y="350" font-size="16" font-style="italic">
-    "Pull 'B' up, 'A' falls down to left, T2 moves from B-Left to A-Right"
-  </text>
+  <!-- Right panel: Red-black -->
+  <rect x="614" y="94" width="560" height="438" class="panel"/>
+  <text x="636" y="126" class="case">Red-Black Insert Fix (parent is red)</text>
+
+  <!-- case 1 -->
+  <text x="644" y="162" class="small">Case A: uncle red -> recolor, move up</text>
+  <circle cx="720" cy="206" r="20" class="rb-black"/>
+  <text x="720" y="206" class="nodeTextLight">G</text>
+  <circle cx="680" cy="264" r="18" class="rb-red"/>
+  <text x="680" y="264" class="nodeText">P</text>
+  <circle cx="760" cy="264" r="18" class="rb-red"/>
+  <text x="760" y="264" class="nodeText">U</text>
+  <circle cx="664" cy="316" r="16" class="rb-red"/>
+  <text x="664" y="316" class="nodeText">N</text>
+  <line x1="710" y1="222" x2="688" y2="248" class="edge"/>
+  <line x1="730" y1="222" x2="752" y2="248" class="edge"/>
+  <line x1="673" y1="281" x2="668" y2="300" class="edge"/>
+
+  <!-- case 2/3 -->
+  <text x="884" y="162" class="small">Case B/C: uncle black -> rotate + recolor</text>
+  <circle cx="942" cy="206" r="20" class="rb-black"/>
+  <text x="942" y="206" class="nodeTextLight">G</text>
+  <circle cx="898" cy="264" r="18" class="rb-red"/>
+  <text x="898" y="264" class="nodeText">P</text>
+  <circle cx="980" cy="264" r="18" class="rb-black"/>
+  <text x="980" y="264" class="nodeTextLight">U</text>
+  <circle cx="922" cy="316" r="16" class="rb-red"/>
+  <text x="922" y="316" class="nodeText">N</text>
+  <line x1="934" y1="222" x2="906" y2="248" class="edge"/>
+  <line x1="950" y1="222" x2="972" y2="248" class="edge"/>
+  <line x1="904" y1="279" x2="916" y2="302" class="edge"/>
+  <path d="M 1015 268 Q 1042 248 1066 268" class="arrow"/>
+  <text x="1040" y="238" class="small">line/triangle normalize</text>
+
+  <line x1="634" y1="372" x2="1150" y2="372" stroke="#d1d5db"/>
+  <text x="636" y="398" class="small">AVL height bound from N(h)=N(h-1)+N(h-2)+1 -> h=O(logN)</text>
+  <text x="636" y="422" class="small">RBT height bound: h <= 2*log2(n+1), due to black-height + no red-red rule</text>
+  <text x="636" y="446" class="small">Both support search/insert/delete in O(logN)</text>
 </svg>

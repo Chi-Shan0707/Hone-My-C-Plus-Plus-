@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+  <defs>
+    <style>
+      text { font-family: "Inter", "Segoe UI", Arial, sans-serif; fill: #1f2937; }
+      .title { font-size: 24px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .panel { fill: #f9fafb; stroke: #d1d5db; stroke-width: 1.2; rx: 12; }
+      .node0 { fill: #e0f2fe; stroke: #0284c7; stroke-width: 2.1; rx: 10; }
+      .node1 { fill: #ede9fe; stroke: #7c3aed; stroke-width: 2.1; rx: 10; }
+      .node2 { fill: #ecfccb; stroke: #65a30d; stroke-width: 2.1; rx: 10; }
+      .leaf { fill: #fff7ed; stroke: #ea580c; stroke-width: 2.1; rx: 10; }
+      .ntext { font-size: 13px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+      .small { font-size: 12px; fill: #4b5563; }
+      .edge { stroke: #475569; stroke-width: 2; marker-end: url(#arrow); }
+      .math { font-size: 13px; fill: #334155; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0,0 12,4 0,8" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <text x="30" y="42" class="title">FFT Divide-and-Conquer Recursion Tree (Radix-2)</text>
+  <text x="30" y="66" class="subtitle">Each split separates even/odd coefficients. Each level does O(N) butterfly combine work.</text>
+
+  <rect x="24" y="92" width="1152" height="500" class="panel"/>
+
+  <!-- Level labels -->
+  <text x="44" y="130" class="small">Level 0</text>
+  <text x="44" y="230" class="small">Level 1</text>
+  <text x="44" y="340" class="small">Level 2</text>
+  <text x="44" y="460" class="small">Level 3 (base)</text>
+
+  <!-- Level 0 -->
+  <rect x="510" y="108" width="180" height="44" class="node0"/>
+  <text x="600" y="130" class="ntext">DFT size N</text>
+
+  <!-- Level 1 -->
+  <rect x="320" y="208" width="180" height="44" class="node1"/>
+  <text x="410" y="230" class="ntext">Even part N/2</text>
+  <rect x="700" y="208" width="180" height="44" class="node1"/>
+  <text x="790" y="230" class="ntext">Odd part N/2</text>
+
+  <!-- Level 2 -->
+  <rect x="210" y="318" width="150" height="42" class="node2"/>
+  <text x="285" y="339" class="ntext">N/4</text>
+  <rect x="390" y="318" width="150" height="42" class="node2"/>
+  <text x="465" y="339" class="ntext">N/4</text>
+  <rect x="660" y="318" width="150" height="42" class="node2"/>
+  <text x="735" y="339" class="ntext">N/4</text>
+  <rect x="840" y="318" width="150" height="42" class="node2"/>
+  <text x="915" y="339" class="ntext">N/4</text>
+
+  <!-- Level 3 leaves -->
+  <rect x="120" y="438" width="110" height="40" class="leaf"/><text x="175" y="458" class="ntext">1</text>
+  <rect x="250" y="438" width="110" height="40" class="leaf"/><text x="305" y="458" class="ntext">1</text>
+  <rect x="380" y="438" width="110" height="40" class="leaf"/><text x="435" y="458" class="ntext">1</text>
+  <rect x="510" y="438" width="110" height="40" class="leaf"/><text x="565" y="458" class="ntext">1</text>
+  <rect x="640" y="438" width="110" height="40" class="leaf"/><text x="695" y="458" class="ntext">1</text>
+  <rect x="770" y="438" width="110" height="40" class="leaf"/><text x="825" y="458" class="ntext">1</text>
+  <rect x="900" y="438" width="110" height="40" class="leaf"/><text x="955" y="458" class="ntext">1</text>
+  <rect x="1030" y="438" width="110" height="40" class="leaf"/><text x="1085" y="458" class="ntext">1</text>
+
+  <!-- edges -->
+  <line x1="560" y1="152" x2="435" y2="208" class="edge"/>
+  <line x1="640" y1="152" x2="765" y2="208" class="edge"/>
+
+  <line x1="390" y1="252" x2="300" y2="318" class="edge"/>
+  <line x1="430" y1="252" x2="450" y2="318" class="edge"/>
+  <line x1="770" y1="252" x2="750" y2="318" class="edge"/>
+  <line x1="810" y1="252" x2="900" y2="318" class="edge"/>
+
+  <line x1="260" y1="360" x2="175" y2="438" class="edge"/>
+  <line x1="310" y1="360" x2="305" y2="438" class="edge"/>
+  <line x1="440" y1="360" x2="435" y2="438" class="edge"/>
+  <line x1="490" y1="360" x2="565" y2="438" class="edge"/>
+  <line x1="710" y1="360" x2="695" y2="438" class="edge"/>
+  <line x1="760" y1="360" x2="825" y2="438" class="edge"/>
+  <line x1="890" y1="360" x2="955" y2="438" class="edge"/>
+  <line x1="940" y1="360" x2="1085" y2="438" class="edge"/>
+
+  <!-- notes -->
+  <text x="70" y="518" class="math">Per-level total combine cost: O(N)</text>
+  <text x="70" y="542" class="math">Tree height: log2(N)</text>
+  <text x="70" y="566" class="math">Total: O(N) * O(logN) = O(N logN)</text>
+</svg>
