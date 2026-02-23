@@ -45,3 +45,8 @@ python microgpt.py
 - [ ] 加入推理采样（temperature、BOS 截断）。
 - [ ] 提供最小可复现脚本：build + run + 对比输出。
 - [ ] 后续再做性能版：批处理、向量化、并行、内存池。
+
+
+## 4 ）链接
+
+- [网页版可视化microgpt](https://microgpt.boratto.ca/)
