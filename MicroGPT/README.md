@@ -50,3 +50,65 @@ python microgpt.py
 ## 4 ）链接
 
 - [网页版可视化microgpt](https://microgpt.boratto.ca/)
+
+
+## 5 ) 第一个小尝试
+
+- 做数学题？
+
+layer = 1  -> layer =4 
+
+```bash
+(base) chishan@LAPTOP-7N8BKOTJ:/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/MicroGPT$ python3 microgpt_annotate.py 
+num docs: 10000
+vocab size: 13
+num params: 3744
+step 1000 / 1000 | loss 1.8863
+--- inference (new, hallucinated names) ---
+sample  1: 126+40=310
+sample  2: 652+62=874
+sample  3: 130+685=187
+sample  4: 192+886=111
+sample  5: 827+476=115
+sample  6: 962+122=192
+sample  7: 120+787=1290
+sample  8: 454+268=179
+sample  9: 641+424=141
+sample 10: 49+965=814
+sample 11: 229+21=753
+sample 12: 463+28=744
+sample 13: 854+494=124
+sample 14: 936+468=1
+sample 15: 689+357=158
+sample 16: 588+483=731
+sample 17: 351+97=514
+sample 18: 913+10=897
+sample 19: 427+767=152
+sample 20: 883+566=117
+(base) chishan@LAPTOP-7N8BKOTJ:/mnt/d/CS/CandC++/Hone-My-C-Plus-Plus-/MicroGPT$ python3 microgpt_annotate.py 
+num docs: 10000
+vocab size: 13
+num params: 12960
+step 1000 / 1000 | loss 1.8350
+--- inference (new, hallucinated names) ---
+sample  1: 383+768=1333
+sample  2: 822+267=1303
+sample  3: 692+34=757
+sample  4: 933+280=1050
+sample  5: 289+142=1165
+sample  6: 793+936=1760
+sample  7: 723+55=563
+sample  8: 424+83=932
+sample  9: 860+161=1061
+sample 10: 415+10=913
+sample 11: 449+70=842
+sample 12: 906+221=1661
+sample 13: 25+862=411
+sample 14: 483+225=1249
+sample 15: 822+604=1113
+sample 16: 985+222=1027
+sample 17: 524+756=1908
+sample 18: 428+509=1415
+sample 19: 134+85=243
+sample 20: 508+253=1667
+```
