@@ -303,7 +303,7 @@ v = [0.0] * len(params)
 # -----------------------------
 # 训练目标：让模型在每个位置都更偏向真实的“下一个 token”。
 # 这里就是最标准的自回归语言建模（token-level NLL）。
-num_steps = 10000 # 原为1000
+num_steps = 1000 # 原为1000
 for step in range(num_steps):
     # 取一条样本并编码，首尾加 BOS 作为边界。
     # 训练对齐关系是：prefix -> next token。
