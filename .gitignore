@@ -77,11 +77,12 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Archives
+*.zip
+*.tar.gz
+
+# Extensionless binaries (common with g++ -o name)
+# Not matched by extension; use .gitattributes or track explicitly
+
 # Allow local overrides file (optional)
 !.gitignore.local
-
-
-*.json
-*.in
-*.out
-*.o
