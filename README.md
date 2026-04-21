@@ -104,6 +104,27 @@
 
 ---
 
+## 下一阶段路线图（Plan / Reminder）
+
+这份不是“已经完成”的目录，而是我和 GPT 讨论后整理出来的下一阶段探索清单，主要用来提醒自己后续优先补哪些更现代、更高级、也更适合用 modern C++ 去实现的方向。
+
+| 数据结构 | 算法 |
+| --- | --- |
+| **动态连通 / 动态树**<br>Rollback DSU；带权/势能 DSU；Link-Cut Tree；Euler Tour Tree；Top Tree | **动态图 / 树高级技巧**<br>离线动态连通性；DSU on tree；Rerooting DP；Centroid Decomposition；Virtual Tree |
+| **字符串 / 压缩索引**<br>Suffix Automaton；Palindromic Tree（Eertree）；Wavelet Tree；Wavelet Matrix；FM-index；Succinct Bitvector（rank/select） | **字符串算法**<br>SA-IS / Suffix Array；Manacher；Z-Algorithm；Booth 最小表示；Duval / Lyndon Decomposition；BWT |
+| **顺序统计 / 优先队列 / 序列维护**<br>Order-statistics tree；Implicit Treap；Pairing Heap；Radix Heap；Linear Basis（线性基） | **图匹配 / 流 / 割**<br>Hopcroft–Karp；Hungarian；Blossom；Min-cost Max-flow；Stoer–Wagner 全局最小割；Gomory–Hu Tree；Edmonds Arborescence；Dominator Tree |
+| **持久化 / 函数式**<br>Persistent Treap；HAMT；Purely Functional RB-Tree；Rope；Piece Table；Gap Buffer | **离线 / 分治 / 查询技巧**<br>Mo's Algorithm（含修改）；CDQ 分治；Parallel Binary Search；Offline Divide-and-Conquer on Time；Tarjan 离线 LCA |
+| **空间 / 检索 / 近邻**<br>KD-Tree；Ball Tree；VP-Tree；R-Tree；BVH；HNSW | **路径 / 搜索 / 检索**<br>A*；Bidirectional Dijkstra；Contraction Hierarchies；Yen K Shortest Paths；Suurballe；ANN Search |
+| **流式 / 近似 / Sketch**<br>Bloom Filter；Counting Bloom；Cuckoo Filter；Xor Filter；Count-Min Sketch；HyperLogLog；Roaring Bitmap | **流式 / 相似性**<br>Reservoir Sampling；Misra–Gries；MinHash；SimHash；LSH |
+| **工程 / 存储**<br>B+ Tree；LSM Tree；Skip List；Concurrent Skip List；Robin Hood Hashing；Cuckoo Hashing | **外存 / 系统算法**<br>External Merge Sort；Cache-Oblivious Search/Sort；Consistent Hashing；LSM Compaction |
+| **并发 / 现代 C++ 味很重**<br>Lock-free Queue；MPMC Ring Buffer；Concurrent Hash Map；Intrusive List；Arena / Pool Allocator | **并发 / 回收 / 调度**<br>Hazard Pointers；Epoch-Based Reclamation；RCU；Work-Stealing |
+| **位运算 / 压缩 / 整数宇宙**<br>Succinct Trie；Compressed Suffix Array；van Emde Boas Tree；X-fast Trie；Y-fast Trie | **数论 / 线代 / 变换**<br>Berlekamp–Massey；Kitamasa；FWHT/FWT；CRT/Garner；Miller–Rabin；Pollard–Rho；GF(2) Gaussian Elimination |
+| **偏理论但非常启发**<br>Retroactive Data Structures；Finger Tree；Succinct Tree / LOUDS | **偏理论但非常启发**<br>Matroid Intersection；SMAWK；SOS DP；Subset Convolution；Half-plane Intersection；Delaunay / Voronoi |
+
+后续如果要继续补内容，优先按这个清单去开新目录、补 README 和实现文件。
+
+---
+
 ## MicroGPT
 C++ from-scratch GPT implementation has been migrated to its own repository:
 **https://github.com/Chi-Shan0707/microgpt.cpp**
@@ -224,6 +245,27 @@ A collection of “back-to-basics” and tricky-topic exercises, for example:
 - **For systematic algorithm learning**: start with `Autonomaton/`, `Binary_Search_Tree/`, `NetworkFlow/`, `Polynominal/` (they contain more complete notes/implementations)
 - **For C++ fundamentals & language details**: check `MOOC/`
 - **For reusable templates**: focus on `NetworkFlow/`, `Sort/`, `NextPermutation/`
+
+---
+
+## Next Roadmap (Plan / Reminder)
+
+This is not a list of finished content. It is a reminder of the next directions I want to explore in this repo, with a bias toward more modern, advanced, and modern-C++-friendly implementations.
+
+| Data Structures | Algorithms |
+| --- | --- |
+| **Dynamic connectivity / dynamic trees**<br>Rollback DSU; weighted/potential DSU; Link-Cut Tree; Euler Tour Tree; Top Tree | **Dynamic graph / tree techniques**<br>Offline dynamic connectivity; DSU on tree; Rerooting DP; Centroid Decomposition; Virtual Tree |
+| **Strings / compressed indexes**<br>Suffix Automaton; Palindromic Tree (Eertree); Wavelet Tree; Wavelet Matrix; FM-index; Succinct Bitvector (rank/select) | **String algorithms**<br>SA-IS / Suffix Array; Manacher; Z-Algorithm; Booth minimum representation; Duval / Lyndon Decomposition; BWT |
+| **Order statistics / priority queues / sequence maintenance**<br>Order-statistics tree; Implicit Treap; Pairing Heap; Radix Heap; Linear Basis | **Graph matching / flow / cuts**<br>Hopcroft–Karp; Hungarian; Blossom; Min-cost Max-flow; Stoer–Wagner global min cut; Gomory–Hu Tree; Edmonds Arborescence; Dominator Tree |
+| **Persistence / functional**<br>Persistent Treap; HAMT; Purely Functional RB-Tree; Rope; Piece Table; Gap Buffer | **Offline / divide-and-conquer / query tricks**<br>Mo's Algorithm (with modifications); CDQ Divide and Conquer; Parallel Binary Search; Offline Divide-and-Conquer on Time; Tarjan offline LCA |
+| **Spatial / retrieval / nearest neighbor**<br>KD-Tree; Ball Tree; VP-Tree; R-Tree; BVH; HNSW | **Path / search / retrieval**<br>A*; Bidirectional Dijkstra; Contraction Hierarchies; Yen K Shortest Paths; Suurballe; ANN Search |
+| **Streaming / approximation / sketching**<br>Bloom Filter; Counting Bloom; Cuckoo Filter; Xor Filter; Count-Min Sketch; HyperLogLog; Roaring Bitmap | **Streaming / similarity**<br>Reservoir Sampling; Misra–Gries; MinHash; SimHash; LSH |
+| **Engineering / storage**<br>B+ Tree; LSM Tree; Skip List; Concurrent Skip List; Robin Hood Hashing; Cuckoo Hashing | **External / system algorithms**<br>External Merge Sort; Cache-Oblivious Search/Sort; Consistent Hashing; LSM Compaction |
+| **Concurrency / very modern C++ flavored**<br>Lock-free Queue; MPMC Ring Buffer; Concurrent Hash Map; Intrusive List; Arena / Pool Allocator | **Concurrency / reclamation / scheduling**<br>Hazard Pointers; Epoch-Based Reclamation; RCU; Work-Stealing |
+| **Bit tricks / compression / integer universe**<br>Succinct Trie; Compressed Suffix Array; van Emde Boas Tree; X-fast Trie; Y-fast Trie | **Number theory / linear algebra / transforms**<br>Berlekamp–Massey; Kitamasa; FWHT/FWT; CRT/Garner; Miller–Rabin; Pollard–Rho; GF(2) Gaussian Elimination |
+| **Theoretical but very inspiring**<br>Retroactive Data Structures; Finger Tree; Succinct Tree / LOUDS | **Theoretical but very inspiring**<br>Matroid Intersection; SMAWK; SOS DP; Subset Convolution; Half-plane Intersection; Delaunay / Voronoi |
+
+If I keep expanding this repo, these are the directions I should prioritize for new folders, READMEs, and implementations.
 
 ---
 
