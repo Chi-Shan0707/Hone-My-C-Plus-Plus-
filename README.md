@@ -34,7 +34,7 @@
 - 额外的笔记与图示资源（`rotations.svg`、`Red_Black Tree ...png` 等）
 
 内容形式：
-- `Binary_Search_Tree/README.md`：中英双语的系统笔记
+- `Binary_Search_Tree/notes.md`：学习笔记
 - 多个 `.cpp/.h`：实现与尝试
 
 ---
@@ -58,7 +58,7 @@
 
 ### 6) 网络流：`NetworkFlow/`
 - **Dinic 最大流**：头文件实现 + wrapper + demo
-- `graph.hpp` 等：图结构/接口的尝试性封装
+- Graph abstractions via `flow_solver.hpp` (abstract base) + `dinic.hpp` (template implementation)
 
 适合用来作为：
 - 竞赛模板雏形
@@ -72,13 +72,7 @@
 
 ---
 
-### 8) 课程学习沉淀：`CS106L/`
-- 与 Stanford **CS106L（C++）** 学习相关的材料整理
-- 包含 `cs106l2020/`、`cs106l2025/` 两个目录（不同年度版本/进度）
-
----
-
-### 9) C/C++ 基础回炉与零散专题：`MOOC/`
+### 8) C/C++ 基础回炉与零散专题：`MOOC/`
 包含大量“从基础到易错点”的练习与笔记型代码，例如：
 - 地址 / 指针 / 引用 / const
 - `extern`、宏、分区（partition）找第 k 小等
@@ -105,24 +99,15 @@
 
 ## 如何使用本仓库（建议）
 - **想系统学算法**：从 `Autonomaton/`、`Binary_Search_Tree/`、`NetworkFlow/`、`Polynominal/` 进入（它们含较完整笔记/实现）
-- **想练 C++ 基础与语法细节**：看 `MOOC/` 与 `CS106L/`
+- **想练 C++ 基础与语法细节**：看 `MOOC/`
 - **想练“可复用模板”**：重点参考 `NetworkFlow/`、`Sort/`、`NextPermutation/`
 
 ---
 
-## TODO / 计划（含你提到的 MicroGPT）
-我本地还有一个尚未上传的项目：
+## MicroGPT
+C++ from-scratch GPT implementation has been migrated to its own repository:
+**https://github.com/Chi-Shan0707/microgpt.cpp**
 
-- **MicroGPT（C++）**：受 Andrej Karpathy 的单文件 GPT（Python）启发，将其思路改写为 **C++ 版本**（偏“从零实现/理解”方向）
-
-建议你上传后在仓库里新增类似结构（示例）：
-- `MicroGPT/`
-  - `README.md`：目标、特性、构建方式、示例运行、训练/推理说明
-  - `src/`：核心实现
-  - `examples/`：最小可运行 demo
-  - `tests/`（可选）：数值对齐/shape 校验/回归用例
-
----
 
 ## 许可与声明
 
@@ -173,7 +158,7 @@ Covers major self-balancing structures and their key engineering/contest impleme
 - Extra notes and image assets (`rotations.svg`, `Red_Black Tree ...png`, etc.)
 
 Format:
-- `Binary_Search_Tree/README.md`: bilingual structured notes
+- `Binary_Search_Tree/notes.md`: learning notes
 - multiple `.cpp/.h`: implementations and experiments
 
 ---
@@ -211,12 +196,6 @@ Useful as:
 
 ---
 
-### 8) Course Notes & Materials: `CS106L/`
-- Learning materials related to Stanford **CS106L (C++)**
-- Includes `cs106l2020/` and `cs106l2025/` (different versions/progress)
-
----
-
 ### 9) C/C++ Fundamentals & Misc Topics: `MOOC/`
 A collection of “back-to-basics” and tricky-topic exercises, for example:
 - address / pointer / reference / const
@@ -243,24 +222,15 @@ A collection of “back-to-basics” and tricky-topic exercises, for example:
 
 ## How to use this repo (suggested paths)
 - **For systematic algorithm learning**: start with `Autonomaton/`, `Binary_Search_Tree/`, `NetworkFlow/`, `Polynominal/` (they contain more complete notes/implementations)
-- **For C++ fundamentals & language details**: check `MOOC/` and `CS106L/`
+- **For C++ fundamentals & language details**: check `MOOC/`
 - **For reusable templates**: focus on `NetworkFlow/`, `Sort/`, `NextPermutation/`
 
 ---
 
-## TODO / Plan (including MicroGPT you mentioned)
-You also have a local project not uploaded yet:
+## MicroGPT
+C++ from-scratch GPT implementation has been migrated to its own repository:
+**https://github.com/Chi-Shan0707/microgpt.cpp**
 
-- **MicroGPT (C++)**: inspired by Andrej Karpathy’s single-file GPT (Python), rewritten into **C++** (aimed at learning/understanding from scratch)
-
-Suggested structure after uploading:
-- `MicroGPT/`
-  - `README.md`: goals, features, build steps, example usage, training/inference notes
-  - `src/`: core implementation
-  - `examples/`: minimal runnable demos
-  - `tests/` (optional): numeric checks, shape validation, regression tests
-
----
 
 ## License 
 
